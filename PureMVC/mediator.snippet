@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>mediator</Title>
+			<Shortcut>mediator</Shortcut>
+			<Description>create custom mediator in PureMVC frame</Description>
+			<Author>fancyblock</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Imports>
+				<Import>
+					<Namespace>System.Collections.Generic</Namespace>
+				</Import>
+				<Import>
+					<Namespace>PureMVC.Patterns</Namespace>
+				</Import>
+				<Import>
+					<Namespace>PureMVC.Interfaces</Namespace>
+				</Import>
+			</Imports>
+			<Declarations>
+				<Literal>
+					<ID>mediatorName</ID>
+					<ToolTip>the mediator name</ToolTip>
+					<Default>Mediator</Default>
+				</Literal>
+				<Literal>
+					<ID>mediatorEnum</ID>
+					<ToolTip>the mediator enum</ToolTip>
+					<Default>MediatorEnums.</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[protected GameObject m_gameObject;
+
+	/// <summary>
+	/// constructor 
+	/// </summary>
+	public $mediatorName$():base($mediatorEnum$)
+	{
+	}
+	
+	/// <summary>
+	/// constructor 
+	/// </summary>
+	/// <param name="viewComponent"></param>
+	public $mediatorName$( GameObject viewComponent ):base($mediatorEnum$, viewComponent )
+	{
+		m_gameObject = viewComponent;
+	}
+
+	/// <summary>
+	/// List the <c>INotification</c> names this <c>Mediator</c> is interested in being notified of
+	/// </summary>
+	/// <returns>The list of <c>INotification</c> names </returns>
+	public override IList<string> ListNotificationInterests()
+	{
+		return new List<string>()
+		{
+			MsgEnums.MSG_CHANGE_SCENE,
+            MsgEnums.MSG_RESET_SCENE
+		};
+	}
+	
+	/// <summary>
+	/// Handle <c>INotification</c>s
+	/// </summary>
+	/// <param name="notification">The <c>INotification</c> instance to handle</param>
+	/// <remarks>
+	///     <para>
+	///        Typically this will be handled in a switch statement, with one 'case' entry per <c>INotification</c> the <c>Mediator</c> is interested in. 
+	///     </para>
+	/// </remarks>
+	public override void HandleNotification(INotification notification)
+	{
+		//TODO 
+	}
+	
+	/// <summary>
+	/// Called by the View when the Mediator is registered
+	/// </summary>
+	public override void OnRegister()
+	{
+		m_gameObject.SetActive(false);
+
+		//TODO 
+	}
+	
+	/// <summary>
+	/// Called by the View when the Mediator is removed
+	/// </summary>
+	public override void OnRemove()
+	{
+	}
+			]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
